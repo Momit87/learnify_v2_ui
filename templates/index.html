@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>LearniFy – Smart Chat & Quiz Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 LearniFy – Smart Chat & Quiz Generator</h1>
+
+        <!-- File Upload Section -->
+        <div class="upload">
+            <input type="file" id="file-upload" accept=".pdf, .docx" />
+            <button onclick="uploadFile()">Upload Document</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tablinks" onclick="openTab(event, 'chat')">💬 Ask Questions</button>
+            <button class="tablinks" onclick="openTab(event, 'quiz')">📝 Generate Quiz</button>
+        </div>
+
+        <!-- Chat Tab -->
+        <div id="chat" class="tabcontent">
+            <input type="text" id="user-question" placeholder="Ask a question about your document..." />
+            <button onclick="askQuestion()">Ask</button>
+            <div id="chat-answer"></div>
+        </div>
+
+        <!-- Quiz Tab -->
+        <div id="quiz" class="tabcontent">
+            <label for="num-questions">Number of Questions:</label>
+            <input type="number" id="num-questions" value="5" min="1" max="10" />
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button onclick="generateQuiz()">Generate Quiz</button>
+
+            <div id="quiz-container"></div>
+            <!-- Initially Hidden Submit Button -->
+            <button id="submit-btn" onclick="submitQuiz()" style="display:none;">Submit Quiz</button>
+
+
+            <div id="quiz-result"></div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="spinner"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
